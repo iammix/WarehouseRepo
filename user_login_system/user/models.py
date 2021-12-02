@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, request
 from passlib.hash import pbkdf2_sha256
-from app import db
+from pymongo import collation
+from app import mymongodb
 import uuid
 
 class User:
     def signup(self):
-        print(request.form)
 
         # Create the user object
         user = {
@@ -17,7 +17,10 @@ class User:
 
         # Encrypt the password
         user['password'] = pbkdf2_sha256.encrypt(user['password'])
-        db.users.insert_one(user)
+        collection = mymongodb['users']
+        collection.insert_one(user)
+
+
 
 
         return jsonify(user), 200

@@ -1,11 +1,15 @@
+from typing import Mapping
 from flask import Flask, render_template
+from jinja2 import environment
 import pymongo
 
 app = Flask(__name__)
 
 # Database
-client = pymongo.MongoClient('localhost',27017)
-db = client.user_login_system
+myclient = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
+mymongodb = myclient['user_login']
+collection = mymongodb['users']
+
 
 #Routes
 from user import routes
