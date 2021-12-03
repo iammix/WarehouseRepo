@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Database
 myclient = pymongo.MongoClient('mongodb://127.0.0.1:27017/')
-mymongodb = myclient['user_login']
+mymongodb = myclient['user_login_system']
 collection = mymongodb['users']
 
 
@@ -21,3 +21,6 @@ def home():
 @app.route('/dashboard/')
 def dashboard():
     return render_template('dashboard.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
