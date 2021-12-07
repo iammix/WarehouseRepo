@@ -1,3 +1,4 @@
 user_login_system/venv/
 user_login_system/__pycache__/
 .DS_Store
+user_login_system/.idea/
