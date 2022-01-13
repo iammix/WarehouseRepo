@@ -1,6 +1,7 @@
 import numpy as np
 import os
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 def processNGAfile(filepath, scalefactor=None):
     try:
@@ -39,10 +40,14 @@ def processNGAfile(filepath, scalefactor=None):
         print("processMotion FAILED!: File is not in the directory")
 
 def main():
-    filename = 'NGA_data.txt'
-    desc, npts, dt, time, inp_acc = processNGAfile(filename)
-    plt.plt(time, inp_acc, 'b-', linewidth=0.5)
-    plt.plot()
+    directory = Path(__file__).parent.absolute()
+    seismic_folder = os.path.join(directory, 'Earthquake_Data')
+    files = os.listdir(seismic_folder)
+    for file in files:
+        filename = os.path.join(seismic_folder, file)
+        desc, npts, dt, time, inp_acc = processNGAfile(filename)
+        plt.plot(time, inp_acc, 'b-', linewidth=0.5)
+    plt.show()
 
 if __name__ == '__main__':
     main()
