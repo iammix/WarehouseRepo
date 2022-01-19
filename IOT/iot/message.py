@@ -9,6 +9,8 @@ class MessageType(Enum):
     PLAY_SONG = auto()
     OPEN = auto()
     CLOSE = auto()
+    FLUSH = auto()
+    CLEAN = auto()
 
 
 @dataclass
